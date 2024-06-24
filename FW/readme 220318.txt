@@ -1,0 +1,22 @@
+***
+CareLite MAIN=STM32F401
+MultiTemp=STM32F032G4
+
+
+1.視窗助手（波特率115200，N，8，1）發送「bootloader」進入boot模式
+2.裝置管理器顯示STM32 Download Fireware Update
+3.
+4.
+5.
+
+
+新一代燒寫工具—STM32CubeProgrammer！
+https://blog.csdn.net/DP29syM41zyGndVF/article/details/109759147
+
+STM32CubeProg 下載及安裝教程
+https://blog.csdn.net/Brendon_Tan/article/details/107686371
+https://www.st.com/zh/development-tools/stm32cubeprog.html
+
+STM32CubeProgrammer基礎使用說明
+https://blog.csdn.net/Naisu_kun/article/details/98764312
+
