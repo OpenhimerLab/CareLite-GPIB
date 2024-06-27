@@ -1,0 +1,36 @@
+###########################################################################
+#   严格按照格式书写
+#   使用#号分隔命令和注释
+#   格式为：命令 #  命令是否有返回信息(是:1,否0) #注释 
+#	如果命令有返回信息，则选中命令后会自动将USB-GPIB设置为自动读取（发送“++auto 1”），以便快速从GPIB读取数据
+#	命令是否有返回信息项可以留空或者跳过如（“命令 #  #注释” 或	“命令 # 注释”），此时软件会保持当前读取状态设置	
+#	注释也可以留空 如（“命令 #  命令是否有返回信息(是:1,否0) ”或 “命令”）
+###########################################################################
+
+++read		#		0		#		使用Prologix 指令读取GPIB数据
+F1		#		0		#		V dc (Default)
+F2		#		0		#		V ac
+F3      #		0		#       2 WIRE kΩ
+F4      #		0		#       4 WIRE kΩ
+F5      #		0		#       mA dc
+F6      #		0		#       mA ac
+R0      #		0		#       Autorange On (Default)
+R1      #		0		#       200 mV, 200 Ω
+R2      #		0		#       2 V, 2 kΩ
+R3      #		0		#       20 V, 20 kΩ
+R4      #		0		#       200 V, 200 kΩ, 200 mA dc
+R5      #		0		#       1000 V dc, 700 V ac, 2 MΩ, 2000 mA
+R6      #		0		#       20 mΩ
+R7      #		0		#       Autorange Off
+R8      #		0		#       20 mV, 20 Ω
+S0      #		0		#       Slow (Default)
+S1      #		0		#       Medium
+S2      #		0		#       Fast
+B0      #		0		#       Offset Off (Default)
+B1      #		0		#       Offset On
+D0      #		0		#       Normal Display (Default)
+D1      #		0		#       Blank Display
+*       #		0		#       Device Clear (Reset meter to default
+X0      #		0		#       Clear Error Register
+Z0      #		0		#       Begin Self-Test
+

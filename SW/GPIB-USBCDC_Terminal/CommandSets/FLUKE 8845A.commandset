@@ -1,0 +1,32 @@
+###########################################################################
+#   严格按照格式书写
+#   使用#号分隔命令和注释
+#   格式为：命令 #  命令是否有返回信息(是:1,否0) #注释 
+#	如果命令有返回信息，则选中命令后会自动将USB-GPIB设置为自动读取（发送“++auto 1”），以便快速从GPIB读取数据
+#	命令是否有返回信息项可以留空或者跳过如（“命令 #  #注释” 或	“命令 # 注释”），此时软件会保持当前读取状态设置	
+#	注释也可以留空 如（“命令 #  命令是否有返回信息(是:1,否0) ”或 “命令”）
+###########################################################################
+
+*IDN?		#		1		#		询问仪器名称、版本等信息
+*RST		#		0		#		重置设置开机设置
+*TST		#		1		#		仪器自检，返回0表示正常，返回1表示错误
+SYSTem:ERRor?		#		1		#		询问当前错误信息
+*CLS		#		0		#		清除错误
+*CLS;:READ?		#		1		#		读取当前值
+*CLS;:SENSe:VOLT:DC #		0		#		设置成DC电压档
+*CLS;:SENSe:VOLT:RANG:AUTO ON #		0		#		设置成DC并开启自动量程
+*CLS;:SENSe:VOLT:RANG 10	#		0		#		设置成DC10V
+*CLS;:SENSe:CURR:AC:RANG 1e-3 #		0		#		设置成AC 100 mA
+*CLS;:SENSe:RES:RANG 20e3	#		0		#		设置成欧姆 100 kΩ
+*CLS;:SENSe:VOLT:DC:NPLC .2 #		0		#		将直流电压积分时间NPLC 0.2。
+*CLS;:SENSe:TEMP:RTD:TYP PT100_385 #		0		#		设置使用二线测量PT100_385温度
+*CLS;:SENSe:FREQ:VOLT:RANG 5	#		0		#		将电压输入范围设置为10伏范围进行频率测量。
+*CLS;:DISPlay OFF		#		0		#		关闭仪器面板显示
+*CLS;:DISPlay ON		#		0		#		开启仪器面板显示
+*CLS;:DISPlay?		#		1		#		询问当前仪器屏幕是否开启
+*CLS;:DISPlay:TEXT    "Hello"		#		0		#		将字符串  "Hello"  显示到仪器屏幕显示
+*CLS;:DISPlay:TEXT:CLEar		#		0		#		清除屏幕显示的文字
+*CLS;:DISPlay:TEXT? 		#		1		#		 询问当前仪器屏幕上显示的内容
+*CLS;:SYSTem:BEEPer		#		0		#		让仪器发出一声蜂鸣
+*CLS;:SYSTem:BEEPer:STATe  ON		#		0		#		开启仪器蜂鸣
+*CLS;:SYSTem:BEEPer:STATe?		#		1		#		询问当前蜂鸣器状态

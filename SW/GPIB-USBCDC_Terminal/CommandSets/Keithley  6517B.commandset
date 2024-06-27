@@ -1,0 +1,39 @@
+###########################################################################
+#   严格按照格式书写
+#   使用#号分隔命令和注释
+#   格式为：命令 #  命令是否有返回信息(是:1,否0) #注释 
+#	如果命令有返回信息，则选中命令后会自动将USB-GPIB设置为自动读取（发送“++auto 1”），以便快速从GPIB读取数据
+#	命令是否有返回信息项可以留空或者跳过如（“命令 #  #注释” 或	“命令 # 注释”），此时软件会保持当前读取状态设置	
+#	注释也可以留空 如（“命令 #  命令是否有返回信息(是:1,否0) ”或 “命令”）
+###########################################################################
+*IDN?		#		1		#		询问仪器名称、版本等信息
+*CLS		#		0		#		清除错误
+*RST		#		0		#		重置设置为默认值
+:SYSTem:PREset		#		0		#		重置设置为默认值
+:SYSTem:ERRor?		#		1		#		询问仪器有什么错误
+*CLS;:DATA?		#		1		#		读取仪器当前值
+*CLS;:MEASure?		#		1		#		读取仪器当前值
+*CLS;:SYSTem:RNUMber:RESet		#		0		#		清空读数计数
+*CLS;:FUNCtion  "VOLTage:DC"		#		0		#		设置当前功能为直流电压测量
+*CLS;:VOLTage:DC::DIGits  6.5		#		0		#		设置电压测量分辨率,可在3.5-6.5(三位半-六位半)之间
+*CLS;:VOLTage:DC:RANGe:UPPer 1E-1		#		0		#		设置直流电压测量量程为 0.1V \n 由于仪器直流电压最低量程为2V,最高量程为200V, 因此仪器显示量程为2V\n仪器将按照用户输入的最接近仪器支持的值设定量程 \n执行该命令前必须使用命令   *CLS;:FUNCtion  "VOLTage:DC"  将仪器设置为直流电压测量功能
+*CLS;:volt:dc:rang 20;:volt:dc:ref 5;:volt:dc:ref:stat on		#		0		#		设置仪器直流电压测量量程为 20V,使用5V参考电压并开启参考电压
+*CLS; :FUNCtion  "CURRent"		#		0		#		设置当前功能为直流电流测量
+*CLS; :CURRent:DC:RANGe:UPPer 1E-12		#		0		#		设置直流电流测量量程为1E-12A \n 由于仪器直流电流最低量程为20pA,最高量程为20mA, 因此仪器显示量程为20p\n仪器将按照用户输入的最接近仪器支持的值设定量程 \n执行该命令前必须使用命令   *CLS;:FUNCtion  "CURRent:DC"  将仪器设置为直流电压测量功能
+*CLS;:FUNCtion  "RESistance"		#		0		#		设置仪器功能为电阻测量
+*CLS;:SYSTem:ZCHeck ON		#		0		#		开启Zero-Check\n参考6517A手册  3.22.12 Zero check and zero correct commands
+*CLS;:RESistance:VSControl  AUTO		#		0		#		设置电阻测量模式电压源输出为AUTO  /  MANual
+*CLS; :RESistance:RANGe:AUTO ON		#		0		#		开启电阻测量自动
+*CLS;:RESistance:MANual:VSOurce:OPERate ON		#		0		#		开启电压源输出 (OFF 为关闭)
+*CLS;:SYSTem:ZCHeck OFF		#		0		#		关闭Zero-Check\n参考6517A手册  3.22.12 Zero check and zero correct commands
+*CLS;:FUNCtion  "RESistance";:SYSTem:ZCHeck ON;:RESistance:VSControl  AUTO; :RESistance:RANGe:AUTO ON;:RESistance:MANual:VSOurce:OPERate ON;:SYSTem:ZCHeck OFF		#		0		#		连接好电路后一条指令执行自动量程电阻测量
+*CLS; :RESistance:RANGe:UPPer 1E12		#		0		#		设置电阻量程为1E12 Ohm;\n执行该命令前必须使用命令   *CLS;:FUNCtion  "RESistance"   将仪器设置为电阻测量功能
+*CLS;:FUNCtion  "CHARge"		#		0		#		设置仪器功能为静电计功能
+*CLS; :CHARge:RANGe:UPPer 1E-9		#		0		#		设置静电计量程为2nC\n 仪器支持量程为 2nC--2uC\n执行该命令前必须使用命令   *CLS;:FUNCtion  "CHARge"  将仪器设置为静电计功能
+*CLS;:SOURce:VOLTage  20		#		0		#		设置电压源输出为20V,电压源电压可在-100.000V-100.000V间的步进为0.005的任意值
+*CLS;:SYSTem:ZCHeck ON;:SYSTem:ZCORrect:ACQuire;:SYSTem:ZCHeck OFF;:SYSTem:ZCORrect ON		#		0		#		取REL值\n参考6517A手册  3.22.12 Zero check and zero correct commands
+*CLS;:FORMat:ELEMents?		#		1		#		询问仪器当前读回的数据会包含什么内容\n参考6517A手册 3.16 :FORMat subsystem 
+*CLS;:FORMat:ELEMents READing,CHANnel,RNUMber,UNITs,TSTamp,STATus,HUMidity,VSOurce		#		0		#		设置仪器读回的数据要包含什么内容\n参考6517A手册 3.16 :FORMat subsystem 
+
+
+

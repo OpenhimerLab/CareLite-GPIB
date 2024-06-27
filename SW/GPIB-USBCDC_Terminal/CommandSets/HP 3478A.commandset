@@ -1,0 +1,52 @@
+###########################################################################
+#   严格按照格式书写
+#   使用#号分隔命令和注释
+#   格式为：命令 #  命令是否有返回信息(是:1,否0) #注释 
+#	如果命令有返回信息，则选中命令后会自动将USB-GPIB设置为自动读取（发送“++auto 1”），以便快速从GPIB读取数据
+#	命令是否有返回信息项可以留空或者跳过如（“命令 #  #注释” 或	“命令 # 注释”），此时软件会保持当前读取状态设置	
+#	注释也可以留空 如（“命令 #  命令是否有返回信息(是:1,否0) ”或 “命令”）
+###########################################################################
+
+++read		#		0		#		使用Prologix 指令读取GPIB数据
+F1		#		0		#		V dc (Default)
+F2		#		0		#		V ac
+F3      #		0		#       2 WIRE kΩ
+F4      #		0		#       4 WIRE kΩ
+F5      #		0		#       DC Current
+F6      #		0		#       AC Current
+RA      #		0		#       Autorange On 
+R0      #		0		#       3V DC, 3V AC, 3A DC, 3A AC, or most sensitive range on any other function 
+R1      #		0		#       30V DC, 30V AC, 30 Ohm, or most sensitive range on any other function 
+R2      #		0		#       300V DC, 300V AC, 300 Ohm, or most sensitive range on any other function 
+R3      #		0		#       3K Ohm or least sensitive range on any other function 
+R4      #		0		#       30K Ohm or least sensitive range on any other function
+R5      #		0		#       300K Ohm or least sensitive range on any other function
+R6      #		0		#       3M Ohm or least :;ensitive range on any other function 
+R7      #		0		#       30M Ohm or least sensitive range 。nany other function. 
+R-1     #		0		#       300mV DC, 300mV AC, 300mA DC, 300mA AC, or most sensitive range on any other function
+R-2     #		0		#       30mV DC, or most sensitive range on any other function
+R-3     #		0		#       most sensitive range on any other function
+N3      #		0		#       3 1/2 Digit Displays
+N4      #		0		#       4 1/2 Digit Displays
+N5      #		0		#       5 1/2 Digit Displays
+T1	      #  0  #   Internal Trigger
+T2	      #  0  #   External Trigger
+T3	      #  0  #	Single Trigger
+T4	      #  0  #	Hold Trigger
+T5	      #  0  #	Fast Trigger
+Z0	      #  0  #	Autozero Disabled
+Z1	      #  0  #	Autozero Enabled
+D1	      #  0  #	Normal Display Operation
+D2	      #  0  #	Display Text and update Annunciators
+D3	      #  0  #	Display Text and turn off Annunciators
+HO	      #  0  #	Equivalent to "F1T4R-2RAZ1N4"
+H1	      #  0  #	Equivalent to "F1R-2RAZ1N4T3"
+H2	      #  0  #	Equivalent to "F2R-2RAZ1N4T3"
+H3	      #  0  #	Equivalent to "F3R-2RAZ1N4T3"
+H4	      #  0  #	Equivalent to "F4R-2RAZ1N4T3"
+H5	      #  0  #	Equivalent to "F5R-2RAZ1N4T3"
+H6	      #  0  #	Equivalent to "F6R-2RAZ1N4T3"
+H7	      #  0  #	Equivalent to "F7R-2RAZ1N4T3
+B	      #  0  #	Read Status of the 3478A in Binary
+S0	      #  0  #	switch isset to Rear
+S1	      #  0  #	switch isset to Front
