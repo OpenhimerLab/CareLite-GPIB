@@ -1,0 +1,119 @@
+[Agilent 34401A English Template 2024]
+
+;This template could modified for adding new models into PC-TOOL. Rename this config file as device’s type, eg. HP34460A, then “HP34460A” will be recognized by the system. 
+
+;This template is a universal config with nearly every function that DMM might have; so it is obvious that you have to disable something that the new DMM model does not support or create something specifically that it supports.
+
+;The symbol “;” will not be read as a command but might be use in command text as a combination expression, if that case, it is a command. 
+; The symbol “,” is used in command or parameter separator.
+;DO NOT modify anything on the left of “=” symbol. 
+
+; The command on the left of “=” are 
+Button name/ Command, Command availability, Get range, Get Auto-Range, Get Auto-Zero, Get NPLC, Get digits, Get Input Z, Set Null, Range(from low to high)。
+
+;0: DCV，1; ACV, 2: 2WR, 3: 4WR, 4: DCA, 5:ACA, 6: Freq, 7: Period, 8: Continuity, 9: Diode, 10: Ratio, 11: Temp, 12: Capacitance
+
+;Note: Fill in 0 if the function is not supported by DMM or Software (Continuity if currently not supported by software).
+
+; Only Scientific notation and decimal are supported, not prefixes like u/m/K/M.
+
+; If there is not corresponding command of the function, put in 「-」, and leave blank after that.
+
+
+
+
+
+
+
+;==================Main Commands===========================
+0=DCV,CONF:VOLT,1,VOLT:DC:RANG?,VOLT:DC:RANG:AUTO?,ZERO:AUTO?,VOLT:DC:NPLC?,-,INP:IMP:AUTO?,CALC:FUNC NULL;:CALC:STAT ON,0.1,1,10,100,1000
+1=ACV,CONF:VOLT:AC,1,VOLT:AC:RANG?,VOLT:AC:RANG:AUTO?,-,-,-,-,CALC:FUNC NULL;:CALC:STAT ON,0.1,1,10,100,750
+2=Ω 2W,CONF:RES,1,RES:RANG?,RES:RANG:AUTO?,ZERO:AUTO?,RES:NPLC?,-,-,CALC:FUNC NULL;:CALC:STAT ON,100,1E+3,1E+4,1E+5,1E+6,1E+7,1E+8
+3=Ω 4W,CONF:FRES,1,FRES:RANG?,FRES:RANG:AUTO?,ZERO:AUTO?,FRES:NPLC?,-,-,CALC:FUNC NULL;:CALC:STAT ON,100,1E+3,1E+4,1E+5,1E+6,1E+7,1E+8
+4=DCI,CONF:CURR,1,CURR:RANG?,CURR:RANG:AUTO?,ZERO:AUTO?,CURR:NPLC?,-,-,CALC:FUNC NULL;:CALC:STAT ON,1E-2,1E-1,1,3
+5=ACI,CONF:CURR:AC,1,CURR:AC:RANG?,CURR:AC:RANG:AUTO?,-,-,-,-,CALC:FUNC NULL;:CALC:STAT ON,1,3
+6=FREQ,CONF:FREQ,1,FREQ:VOLT:RANG?,FREQ:VOLT:RANG:AUTO?,-,-,-,-,CALC:FUNC NULL;:CALC:STAT ON,0.1,1,10,100,750
+7=PERIOD,CONF:PER,1,PER:VOLT:RANG?,PER:VOLT:RANG:AUTO?,-,-,-,-,CALC:FUNC NULL;:CALC:STAT ON,0.1,1,10,100,750
+8=DIODE,CONF:DIOD,1
+9=DC:RAT,CONF:RAT,1,VOLT:DC:RANG?,VOLT:DC:RANG:AUTO?,-,VOLT:DC:NPLC?,-,INP:IMP:AUTO?,-,0.1,1,10,100,1000
+10=TEMP,CONF:TEMP,0
+11=CAP,CONF:CAP,0
+;=================End============================
+
+
+
+
+
+
+
+
+
+
+;******General Commands**********
+
+; ===Read Measurement (Always ON)
+Read=READ?
+
+; ===Prefix and decimal format (Always ON)
+Prefix=0,0,0,0,0,0,0,0,0,0,0,0
+
+; ===NPLC Range
+NPLC=0.02,0.2,1,10,100
+
+;===Max Digit(for 8.5 digits fills in 8 while default is 6)
+maxDIG=6
+
+;===Max Digit if not specified
+;setMaxDIG=7
+
+;===If the following commands are not needed or necessary, put「;」 in front====
+
+; ===Get command config
+getCONF=CONF?
+
+; ===Get DMM ID
+;getID=ID?
+
+; ===Get Error info (Default SYST:ERR?)
+;getERR=ERRSTR?
+
+; ===Set Trigger sample count (used in Oscilloscope mode, default=1)
+Sample=SAMP:COUN
+
+; ===Set Display Config
+DispOn=DISP ON
+DispOff=DISP OFF
+
+
+
+; ===Get Display Command
+getDisp=DISP?
+
+; ===Display Readback
+DispText=DISP:TEXT "
+
+; ===Clear Display Readback Text
+ClrText=DISP:TEXT:CLE
+
+; ===Local or Remote Command (Only serial COM mode, disable with “;”)
+Remote=SYST:REM
+Local=SYST:LOC
+
+; ===Initial Commands Off
+;Init=INIT:CONT OFF
+
+;=== Default Header off
+;:SYST:HEAD OFF
+
+;===Set Command after disconnected
+;End=INIT:CONT ON
+
+;===Auto-Self-Cal Command
+;Acal=*CAL?
+
+; ===Auto-Self-Cal Parameter (use “,” as sepetator)
+;AcalPara=
+
+; ===Set Temp Sensor Config (FRTD,RTD,FTH,THER,TC/Sensor type use ”,”/ Sensor selectable parameter use “space”)
+;TempSensor=FRTD:85,RTD:85,FTH:2252 5000 10000,THER:2252 5000 10000
+
